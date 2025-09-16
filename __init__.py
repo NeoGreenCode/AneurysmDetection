@@ -96,6 +96,7 @@ class AneurysmDetection:
         checkpoint = torch.load(self.model_path, map_location="cpu", weights_only=False)
         if "model_state" in checkpoint:
             state_dict = checkpoint["model_state"]
+            
         else:
             raise KeyError("Could not find 'model_state' in checkpoint.")
         self.model.load_state_dict(state_dict)
@@ -168,3 +169,28 @@ class AneurysmDetection:
         gc.collect()
 
         return pd.DataFrame(probs.tolist(), columns=LABEL_COLS)
+
+    def predict_tensor(self, input_tensor) -> pd.DataFrame:
+        """
+        Runs inference on a single or batch of 4D input tensors.
+
+        Args:
+            input_tensor (np.ndarray, torch.Tensor, or list): 
+                - Single tensor with shape (C, D, H, W)
+                - Batch tensor with shape (B, C, D, H, W)
+                - List of tensors, each with shape (C, D, H, W)
+
+        Returns:
+            pd.DataFrame: Model output probabilities for each input (one row per input).
+        """
+        # Handle torch.Tensor input
+        if isinstance(input_tensor, torch.Tensor):
+            input_tensor = input_tensor.cpu().numpy()
+
+        # If input is a single tensor (C, D, H, W), wrap in a list
+        if isinstance(input_tensor, np.ndarray) and input_tensor.ndim == 4:
+            input_tensor = [input_tensor]
+        # If input is a batch tensor (B, C, D, H, W), convert to list of tensors
+        elif isinstance(input_tensor, np.ndarray) and input_tensor.ndim == 5:
+            input_tensor = [input_tensor[i] for i in range(input_tensor.shape[0])]
+   
