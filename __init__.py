@@ -46,8 +46,14 @@ class AneurysmDetection:
         Args:
             model_name (str): Name of the model to use. Must be present in available_models.
         """
+        
         self.model_name = model_name    
+        if self.model_name not in available_models:
+            raise ValueError(f"Model '{self.model_name}' not found in {available_models.keys()}.")
+
+
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
         # Download or set the model path before building the model
         self.model_download()
         self.build_model()
@@ -60,8 +66,7 @@ class AneurysmDetection:
             ValueError: If the model_name is not in available_models.
             Exception: For any error during download.
         """
-        if self.model_name not in available_models:
-            raise ValueError(f"Model '{self.model_name}' not found in {available_models.keys()}.")
+        
 
         try:
             print(f"Downloading model from Hugging Face Hub...")
@@ -87,7 +92,8 @@ class AneurysmDetection:
             pretrained=False
         ).to(self.device)
 
-        state_dict = torch.load(self.model_path, map_location="cpu")
+        # Pass weights_only=False to torch.load
+        state_dict = torch.load(self.model_path, map_location="cpu", weights_only=False)
         self.model.load_state_dict(state_dict)
         self.model.eval()
         print("Model loaded and ready for inference.")
