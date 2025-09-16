@@ -193,4 +193,28 @@ class AneurysmDetection:
         # If input is a batch tensor (B, C, D, H, W), convert to list of tensors
         elif isinstance(input_tensor, np.ndarray) and input_tensor.ndim == 5:
             input_tensor = [input_tensor[i] for i in range(input_tensor.shape[0])]
-   
+        # If input is already a list, do nothing
+
+        batch_tensors = []
+        for tensor in input_tensor:
+            if isinstance(tensor, torch.Tensor):
+                tensor = tensor.cpu().numpy()
+            channel1 = _channel1(tensor)[0]  # (D, H, W)
+            channel2 = _channel2(tensor[0])  # (D, H, W)
+            channel3 = _channel3(tensor[0])  # (D, H, W)
+            vol_stacked = np.stack([channel1, channel2, channel3], axis=0)  # (3, D, H, W)
+            batch_tensors.append(vol_stacked)
+
+        batch_array = np.stack(batch_tensors, axis=0)  # (B, 3, D, H, W)
+        batch_tensor = torch.from_numpy(batch_array).float().to(self.device)  # (B, 3, D, H, W)
+
+        self.model.eval()
+        with torch.no_grad():
+            logits = self.model(batch_tensor)
+            probs = torch.sigmoid(logits).cpu().numpy()  # (B, num_classes)
+
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        gc.collect()
+
+        return pd.DataFrame(probs.tolist(), columns=LABEL_COLS)
