@@ -92,8 +92,12 @@ class AneurysmDetection:
             pretrained=False
         ).to(self.device)
 
-        # Pass weights_only=False to torch.load
-        state_dict = torch.load(self.model_path, map_location="cpu", weights_only=False)
+        # Load checkpoint and extract model_state
+        checkpoint = torch.load(self.model_path, map_location="cpu", weights_only=False)
+        if "model_state" in checkpoint:
+            state_dict = checkpoint["model_state"]
+        else:
+            raise KeyError("Could not find 'model_state' in checkpoint.")
         self.model.load_state_dict(state_dict)
         self.model.eval()
         print("Model loaded and ready for inference.")
