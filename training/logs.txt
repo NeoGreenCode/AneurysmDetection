@@ -1,0 +1,153 @@
+Epoch 1/30
+Training: 100%|██████████| 625/625 [09:34<00:00,  1.09it/s]
+Validating: 100%|██████████| 70/70 [01:00<00:00,  1.15it/s]
+Train Loss: 0.38044 | Val Loss: 0.26462 | Val Score: 0.85251
+Aneurysm AUC: 0.98192 | Mean AUC: 0.72311
+LR: 0.00009973
+Checkpoint saved at epoch 1 with score 0.85251
+
+Epoch 2/30
+Training: 100%|██████████| 625/625 [08:17<00:00,  1.26it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.39it/s]
+Train Loss: 0.21092 | Val Loss: 0.19166 | Val Score: 0.86912
+Aneurysm AUC: 0.99366 | Mean AUC: 0.74458
+LR: 0.00009892
+Checkpoint saved at epoch 2 with score 0.86912
+
+Epoch 3/30
+Training: 100%|██████████| 625/625 [08:17<00:00,  1.26it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.38it/s]
+Train Loss: 0.16530 | Val Loss: 0.16505 | Val Score: 0.89340
+Aneurysm AUC: 0.99609 | Mean AUC: 0.79072
+LR: 0.00009758
+Checkpoint saved at epoch 3 with score 0.89340
+
+Epoch 4/30
+Training: 100%|██████████| 625/625 [08:19<00:00,  1.25it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.39it/s]
+Train Loss: 0.15194 | Val Loss: 0.15058 | Val Score: 0.89690
+Aneurysm AUC: 0.99533 | Mean AUC: 0.79846
+LR: 0.00009572
+Checkpoint saved at epoch 4 with score 0.89690
+
+Epoch 5/30
+Training: 100%|██████████| 625/625 [08:18<00:00,  1.25it/s]
+Validating: 100%|██████████| 70/70 [00:49<00:00,  1.41it/s]
+Train Loss: 0.14052 | Val Loss: 0.13580 | Val Score: 0.90428
+Aneurysm AUC: 0.99481 | Mean AUC: 0.81374
+LR: 0.00009337
+Checkpoint saved at epoch 5 with score 0.90428
+
+Epoch 6/30
+Training: 100%|██████████| 625/625 [08:20<00:00,  1.25it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.39it/s]
+Train Loss: 0.13507 | Val Loss: 0.13234 | Val Score: 0.89920
+Aneurysm AUC: 0.99548 | Mean AUC: 0.80291
+LR: 0.00009055
+No improvement. Patience 1/5
+
+Epoch 7/30
+Training: 100%|██████████| 625/625 [08:21<00:00,  1.25it/s]
+Validating: 100%|██████████| 70/70 [00:49<00:00,  1.40it/s]
+Train Loss: 0.13294 | Val Loss: 0.13237 | Val Score: 0.90392
+Aneurysm AUC: 0.99712 | Mean AUC: 0.81071
+LR: 0.00008729
+No improvement. Patience 2/5
+
+Epoch 8/30
+Training: 100%|██████████| 625/625 [08:24<00:00,  1.24it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.39it/s]
+Train Loss: 0.13033 | Val Loss: 0.13235 | Val Score: 0.90498
+Aneurysm AUC: 0.99586 | Mean AUC: 0.81411
+LR: 0.00008362
+Checkpoint saved at epoch 8 with score 0.90498
+
+Epoch 9/30
+Training: 100%|██████████| 625/625 [08:30<00:00,  1.22it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.40it/s]
+Train Loss: 0.12935 | Val Loss: 0.12590 | Val Score: 0.91248
+Aneurysm AUC: 0.99609 | Mean AUC: 0.82886
+LR: 0.00007960
+Checkpoint saved at epoch 9 with score 0.91248
+
+Epoch 10/30
+Training: 100%|██████████| 625/625 [08:22<00:00,  1.24it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.39it/s]
+Train Loss: 0.12552 | Val Loss: 0.12247 | Val Score: 0.91023
+Aneurysm AUC: 0.99560 | Mean AUC: 0.82486
+LR: 0.00007525
+No improvement. Patience 1/5
+
+Epoch 11/30
+Training: 100%|██████████| 625/625 [08:19<00:00,  1.25it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.40it/s]
+Train Loss: 0.12500 | Val Loss: 0.12244 | Val Score: 0.91157
+Aneurysm AUC: 0.99841 | Mean AUC: 0.82473
+LR: 0.00007063
+No improvement. Patience 2/5
+
+Epoch 12/30
+Training: 100%|██████████| 625/625 [08:22<00:00,  1.24it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.40it/s]
+Train Loss: 0.12499 | Val Loss: 0.12264 | Val Score: 0.91581
+Aneurysm AUC: 0.99639 | Mean AUC: 0.83522
+LR: 0.00006580
+Checkpoint saved at epoch 12 with score 0.91581
+
+Epoch 13/30
+Training: 100%|██████████| 625/625 [08:22<00:00,  1.24it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.39it/s]
+Train Loss: 0.12296 | Val Loss: 0.12334 | Val Score: 0.91435
+Aneurysm AUC: 0.99710 | Mean AUC: 0.83160
+LR: 0.00006079
+No improvement. Patience 1/5
+Epoch 14/30
+Training: 100%|██████████| 625/625 [08:23<00:00,  1.24it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.38it/s]
+Train Loss: 0.12017 | Val Loss: 0.11943 | Val Score: 0.91781
+Aneurysm AUC: 0.99916 | Mean AUC: 0.83645
+LR: 0.00005567
+Checkpoint saved at epoch 14 with score 0.91781
+
+Epoch 15/30
+Training: 100%|██████████| 625/625 [08:22<00:00,  1.24it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.39it/s]
+Train Loss: 0.11975 | Val Loss: 0.11868 | Val Score: 0.91225
+Aneurysm AUC: 0.99974 | Mean AUC: 0.82475
+LR: 0.00005050
+No improvement. Patience 1/5
+
+Epoch 16/30
+Training: 100%|██████████| 625/625 [08:21<00:00,  1.25it/s]
+Validating: 100%|██████████| 70/70 [00:49<00:00,  1.40it/s]
+Train Loss: 0.11768 | Val Loss: 0.12115 | Val Score: 0.91102
+Aneurysm AUC: 0.99485 | Mean AUC: 0.82719
+LR: 0.00004533
+No improvement. Patience 2/5
+
+Epoch 17/30
+Training: 100%|██████████| 625/625 [08:22<00:00,  1.24it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.39it/s]
+Train Loss: 0.11567 | Val Loss: 0.12329 | Val Score: 0.90875
+Aneurysm AUC: 0.99553 | Mean AUC: 0.82197
+LR: 0.00004021
+No improvement. Patience 3/5
+
+Epoch 18/30
+Training: 100%|██████████| 625/625 [08:17<00:00,  1.26it/s]
+Validating: 100%|██████████| 70/70 [00:50<00:00,  1.40it/s]
+Train Loss: 0.11571 | Val Loss: 0.11809 | Val Score: 0.91020
+Aneurysm AUC: 0.99794 | Mean AUC: 0.82247
+LR: 0.00003520
+No improvement. Patience 4/5
+
+Epoch 19/30
+Training: 100%|██████████| 625/625 [08:21<00:00,  1.25it/s]
+Validating: 100%|██████████| 70/70 [00:49<00:00,  1.40it/s]
+Train Loss: 0.11728 | Val Loss: 0.11792 | Val Score: 0.91313
+Aneurysm AUC: 0.99792 | Mean AUC: 0.82834
+LR: 0.00003037
+
+No improvement. Patience 5/5
+Early stopping at epoch 19
+Training complete. Best val score: 0.91781
