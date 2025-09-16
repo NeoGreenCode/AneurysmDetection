@@ -38,7 +38,9 @@ class AneurysmDetection:
         Args:
             model_name (str): Name of the model to use. Must be present in available_models.
         """
-        self.model_name = model_name
+        self.model_name = model_name  # Model name to use
+        self.build_model()            # Build the model architecture
+
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
@@ -87,17 +89,20 @@ class AneurysmDetection:
         print("Model loaded and ready for inference.")
 
         
-    def predict_one_batch(self, input_tensor: np.ndarray) -> np.ndarray:
+    def predict_one_batch(self, input_tensor: np.ndarray) -> pd.DataFrame:
         """
         Runs inference on a single 4D input tensor.
 
         Args:
-            input_tensor (np.ndarray): Input tensor with shape (C, D, H, W).
+            input_tensor (np.ndarray or torch.Tensor): Input tensor with shape (C, D, H, W).
 
         Returns:
-            np.ndarray: Model output probabilities for the input.
+            pd.DataFrame: Model output probabilities for the input.
         """
-        # Ensure input_tensor is in (C, D, H, W)
+        # Accept both numpy arrays and torch tensors
+        if isinstance(input_tensor, torch.Tensor):
+            input_tensor = input_tensor.cpu().numpy()
+
         channel1 = _channel1(input_tensor)[0]  # (D, H, W)
         channel2 = _channel2(input_tensor[0])  # (D, H, W)
         channel3 = _channel3(input_tensor[0])  # (D, H, W)
@@ -114,21 +119,24 @@ class AneurysmDetection:
             torch.cuda.empty_cache()
         gc.collect()
 
-        
         return pd.DataFrame([probs.tolist()], columns=LABEL_COLS)
+
 
     def predict_batch(self, input_tensors: list) -> pd.DataFrame:
         """
         Runs inference on a batch of input tensors.
 
         Args:
-            input_tensors (list): List of input tensors, each with shape (C, D, H, W).
+            input_tensors (list): List of input tensors, each with shape (C, D, H, W) as np.ndarray or torch.Tensor.
 
         Returns:
             pd.DataFrame: Model output probabilities for the batch, each row corresponds to an input.
         """
         batch_tensors = []
         for tensor in input_tensors:
+            # Accept both numpy arrays and torch tensors
+            if isinstance(tensor, torch.Tensor):
+                tensor = tensor.cpu().numpy()
             channel1 = _channel1(tensor)[0]  # (D, H, W)
             channel2 = _channel2(tensor[0])  # (D, H, W)
             channel3 = _channel3(tensor[0])  # (D, H, W)
@@ -147,5 +155,4 @@ class AneurysmDetection:
             torch.cuda.empty_cache()
         gc.collect()
 
-        # Return a DataFrame where each row is the prediction for one input
         return pd.DataFrame(probs.tolist(), columns=LABEL_COLS)
