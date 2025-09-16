@@ -3,10 +3,18 @@ from utils import _channel1, _channel2, _channel3
 import torch
 import numpy as np
 import pandas as pd
+import gc
+from huggingface_hub import hf_hub_download
 
 # Dictionary of available models and their configurations
 global available_models, LABEL_COLS
-available_models = {"R3D18_AneurysmDetection_33M": {"num_classes": 14, "num_frames": 16, "model": arch_r3d18}}
+available_models = {
+    "R3D18_AneurysmDetection_33M": {
+        "num_classes": 14,
+        "num_frames": 16,
+        "model": arch_r3d18
+    }
+}
 
 LABEL_COLS = [
     'Left Infraclinoid Internal Carotid Artery',
@@ -38,18 +46,15 @@ class AneurysmDetection:
         Args:
             model_name (str): Name of the model to use. Must be present in available_models.
         """
-        self.model_name = model_name                                                # Model name to use
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # Use GPU if available
-        self.build_model()                                                          # Build the model architecture
+        self.model_name = model_name    
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # Download or set the model path before building the model
+        self.model_download()
+        self.build_model()
 
-
-
-    def model_download(self, url: str):
+    def model_download(self):
         """
-        Downloads the model weights from a given URL using HuggingFace Hub.
-
-        Args:
-            url (str): The URL or repo_id for the model weights.
+        Downloads the model weights from HuggingFace Hub.
 
         Raises:
             ValueError: If the model_name is not in available_models.
@@ -59,9 +64,9 @@ class AneurysmDetection:
             raise ValueError(f"Model '{self.model_name}' not found in {available_models.keys()}.")
 
         try:
-            print(f"Downloading model from {url}...")
+            print(f"Downloading model from Hugging Face Hub...")
 
-            model_path = hf_hub_download(
+            self.model_path = hf_hub_download(
                 repo_id="claytonsds/R3D18_AneurysmDetection_33M",
                 filename=f"{self.model_name}.pth"
             )
@@ -71,7 +76,6 @@ class AneurysmDetection:
         except Exception as e:
             print(f"Error downloading model: {e}")
             raise e
-
 
     def build_model(self):
         """
@@ -83,12 +87,11 @@ class AneurysmDetection:
             pretrained=False
         ).to(self.device)
 
-        state_dict = torch.load(model_path, map_location="cpu")
+        state_dict = torch.load(self.model_path, map_location="cpu")
         self.model.load_state_dict(state_dict)
         self.model.eval()
         print("Model loaded and ready for inference.")
 
-        
     def predict_one_batch(self, input_tensor: np.ndarray) -> pd.DataFrame:
         """
         Runs inference on a single 4D input tensor.
@@ -120,7 +123,6 @@ class AneurysmDetection:
         gc.collect()
 
         return pd.DataFrame([probs.tolist()], columns=LABEL_COLS)
-
 
     def predict_batch(self, input_tensors: list) -> pd.DataFrame:
         """
