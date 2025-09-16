@@ -38,10 +38,10 @@ class AneurysmDetection:
         Args:
             model_name (str): Name of the model to use. Must be present in available_models.
         """
-        self.model_name = model_name  # Model name to use
-        self.build_model()            # Build the model architecture
+        self.model_name = model_name                                                # Model name to use
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # Use GPU if available
+        self.build_model()                                                          # Build the model architecture
 
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
     def model_download(self, url: str):
