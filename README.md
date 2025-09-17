@@ -23,7 +23,7 @@ The model expects volumetric data (e.g., MRI or CT) with:
 - `H`, `W`: Height and width (default: 224x224)
 
 ## Model Information
-![training_stats](figures/model_training_stats.png)
+
 
 | Backbone         | Input shape                | Number of frames | Output classes | Backbone features | Total parameters | Target label      | Best checkpoint    | Validation Score | Aneurysm AUC | Mean AUC | Optimizer  | Scheduler          | Learning rate | Weight decay | Accumulation | Early stopping | Model name         | Class weight | Combined loss      | Cross-validation   |
 |------------------|---------------------------|------------------|----------------|-------------------|------------------|-------------------|--------------------|------------------|--------------|----------|------------|---------------------|---------------|--------------|--------------|----------------|---------------------|-------------|--------------------|--------------------|
