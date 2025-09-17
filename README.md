@@ -6,7 +6,7 @@ This code provides the implementation of the model proposed in the RSNA Intracra
 ##  
 * [Features](#features)
 * [How it Works](#how-it-works)
-* [ADM Model Info](#adm-model-info)
+* [Model Info](#model-info)
   * [Training Stats](#training-stats)
   * [Architecture](#architecture)
   * [Training Information](#training-information)
@@ -36,7 +36,7 @@ The model expects volumetric data (e.g., MRI or CT) with:
   
 [↑ Top](#top)
 
-## ADM Model Info
+## Model Info
 ### Training Stats
 
 ![stats](figures/model_training_stats.png)
