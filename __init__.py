@@ -1,10 +1,20 @@
-from architecture import arch_r3d18 
-from utils import _channel1, _channel2, _channel3
+# Running locally
+try:
+    from architecture import arch_r3d18 
+    from utils import _channel1, _channel2, _channel3
+
+# Running as module
+except ImportError:
+    from .architecture import arch_r3d18
+    from .utils import _channel1, _channel2, _channel3
+
+# Import necessary libraries
 import torch
 import numpy as np
 import pandas as pd
 import gc
 from huggingface_hub import hf_hub_download
+
 
 # Dictionary of available models and their configurations
 global available_models, LABEL_COLS
