@@ -1,6 +1,6 @@
-# AneurysmDetection
+![banner](figures/banner.png)
 
-AneurysmDetection provides an easy-to-use interface for aneurysm detection in volumetric medical images using a 3D ResNet-based deep learning model.
+This code provides the implementation of the model proposed in the RSNA Intracranial Aneurysm Detection Competition (submitted on Oct. 14, 2025), including some utility methods.
 
 ## Features
 ![pipeline](figures/pipeline.png)
