@@ -23,14 +23,14 @@ The model expects volumetric data (e.g., MRI or CT) with:
 - `H`, `W`: Height and width (default: 224x224)
 
 ## Model Information
+![training_stats](figures/model_training_stats.png)
 
 | Backbone         | Input shape                | Number of frames | Output classes | Backbone features | Total parameters | Target label      | Best checkpoint    | Validation Score | Aneurysm AUC | Mean AUC | Optimizer  | Scheduler          | Learning rate | Weight decay | Accumulation | Early stopping | Model name         | Class weight | Combined loss      | Cross-validation   |
 |------------------|---------------------------|------------------|----------------|-------------------|------------------|-------------------|--------------------|------------------|--------------|----------|------------|---------------------|---------------|--------------|--------------|----------------|---------------------|-------------|--------------------|--------------------|
 | 3D ResNet-18     | (C=1, D=16, H=224, W=224) | 16               | 14             | 512               | 33,565,390       | Aneurysm Present  | Epoch 14/30 ⭐      | 0.91781          | 0.99916      | 0.83645  | AdamW      | CosineAnnealingLR  | 1e-4          | 1e-4         | 4            | 5              | r3d_18_aneurysm     | 3.0         | Yes (focal=0.3)    | 10-fold (k=10)     |
 
-- **Train Loss:** 0.12017
-- **Validation Loss:** 0.11943
-- **Output directory:** `checkpoints`
+
+
 
 
 ##  Example usage
