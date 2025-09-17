@@ -1,7 +1,17 @@
+<a id="top"></a>
 ![banner](figures/banner.png)
 
 This code provides the implementation of the model proposed in the RSNA Intracranial Aneurysm Detection Competition (submitted on Oct. 14, 2025), including some utility methods.
 
+##  
+* [Features](#features)
+* [How it Works](#how-it-works)
+* [ADM Model Info](#adm-model-info)
+  * [Training Stats](#training-stats)
+  * [Architecture](#architecture)
+  * [Training Information](#training-information)
+* [Example Usage](#example-usage)
+  
 ## Features
 ![pipeline](figures/pipeline.png)
 
@@ -9,8 +19,10 @@ This code provides the implementation of the model proposed in the RSNA Intracra
 - **Flexible inference:** Accepts both single and batched inputs, in NumPy or PyTorch tensor formats.
 - **Preprocessing included:** Handles grayscale conversion and channel stacking internally.
 - **Output as DataFrame:** Returns predictions as a pandas DataFrame with named columns for each anatomical region.
+  
+[↑ Top](#top)
 
-## How it works
+## How it Works
 
 The main class, `AneurysmDetection`, loads a pretrained 3D ResNet model and provides a unified method (`predict_tensor`) for inference. The method accepts:
 - A single input with shape `(C, D, H, W)`
@@ -21,13 +33,15 @@ The model expects volumetric data (e.g., MRI or CT) with:
 - `C`: Number of channels (usually 1 for grayscale)
 - `D`: Number of slices/frames (default: 16)
 - `H`, `W`: Height and width (default: 224x224)
+  
+[↑ Top](#top)
 
 ## ADM Model Info
 ### Training Stats
 
 ![stats](figures/model_training_stats.png)
 
-### Architecture (Aneurysm Detection Model)
+### Architecture
 
 | Component       | Description                                                                 |
 |-----------------|-----------------------------------------------------------------------------|
@@ -47,10 +61,9 @@ The model expects volumetric data (e.g., MRI or CT) with:
 |---------------------|------------------|-------------------|--------------------|------------------|--------------|----------|------------|---------------------|---------------|--------------|--------------|----------------|--------------|--------------------|--------------------|
 | r3d_18_aneurysm     | 33,565,390       | Aneurysm Present  | Epoch 14/30 ⭐      | 0.91781          | 0.99916      | 0.83645  | AdamW      | CosineAnnealingLR  | 1e-4          | 1e-4         | 4            | 5              | 3.0          | Yes (focal=0.3)    | 10-fold (k=10)     |
 
+[↑ Top](#top)
 
-
-
-##  Example usage
+##  Example Usage
 To get started, clone the repository using the command below:
 
 ```bash
@@ -74,3 +87,6 @@ pred
 |---|-------------------------------------------|--------------------------------------------|-------------------------------------------|--------------------------------------------|-----------------------------|------------------------------|-------------------------------|-------------------------------|--------------------------------|-------------------------------------|--------------------------------------|-------------|-----------------------------|------------------|
 | 0 | 0.052423                                 | 0.081153                                   | 0.247672                                  | 0.140270                                   | 0.137513                    | 0.159553                     | 0.133901                      | 0.046614                      | 0.042221                         | 0.024711                            | 0.041733                             | 0.040193    | 0.046926                    | 0.598635         |
 | 1 | 0.052246                                 | 0.081089                                   | 0.251525                                  | 0.145575                                   | 0.136922                    | 0.160558                     | 0.136903                      | 0.045311                      | 0.042342                         | 0.024428                            | 0.042559                             | 0.040697    | 0.047657                    | 0.602177         |
+
+
+[↑ Top](#top)
