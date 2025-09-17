@@ -3,6 +3,7 @@
 AneurysmDetection provides an easy-to-use interface for aneurysm detection in volumetric medical images using a 3D ResNet-based deep learning model.
 
 ## Features
+![pipeline](figures/pipeline.png)
 
 - **Automatic model download** from Hugging Face Hub.
 - **Flexible inference:** Accepts both single and batched inputs, in NumPy or PyTorch tensor formats.
