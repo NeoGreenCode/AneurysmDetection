@@ -1,5 +1,4 @@
 
-from distutils import config
 import os
 import glob
 import numpy as np
