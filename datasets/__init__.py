@@ -111,7 +111,7 @@ class FrameDataset(Dataset):
         self._cache_keys.append(idx)
         
     def _extract_metadata(self, row):
-        if not self.use_metadata:
+        if not self.USE_METADATA:
             return torch.tensor([0.0, 0.0], dtype=torch.float32)
         age = row.get('PatientAge', 50)
         if pd.isna(age):
