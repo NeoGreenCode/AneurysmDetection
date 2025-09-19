@@ -2,11 +2,13 @@
 try:
     from architecture import arch_r3d18 
     from utils import _channel1, _channel2, _channel3
+    from datasets import FrameDataset
 
 # Running as module
 except ImportError:
     from .architecture import arch_r3d18
     from .utils import _channel1, _channel2, _channel3
+    from .datasets import FrameDataset
 
 # Import necessary libraries
 import torch
@@ -228,3 +230,6 @@ class AneurysmDetection:
         gc.collect()
 
         return pd.DataFrame(probs.tolist(), columns=LABEL_COLS)
+
+
+
