@@ -3,8 +3,12 @@ import os
 import glob
 import numpy as np
 import pandas as pd
-import torch
+
 from torch.utils.data import Dataset
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
 import cv2
 import pydicom
 from typing import List, Tuple
